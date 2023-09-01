@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="corporate">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +12,65 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
+    <header class="container mx-auto mb-10">
+      <!-- Navbar -->
+      <div class="navbar bg-base-100">
+        <div class="navbar-start">
+          <img src="images/Logo.png" alt="" />
+        </div>
+        <div class="navbar-center">
+          <a
+            class="bg-gray-200 font-medium py-1 lg:py-1 lg:px-2 normal-case lg:text-xl rounded-md"
+            ><button>Sort by view</button></a
+          >
+        </div>
+        <div class="navbar-end">
+          <button
+            class="bg-gray-200 py-1 lg:py-1 lg:px-2 rounded-md font-medium"
+          >
+            Blog
+          </button>
+        </div>
+      </div>
+      <hr />
+    </header>
+    <main class="container mx-auto">
+      <!-- Dynamic Button Container  -->
+      <section class="mb-20">
+        <div
+          id="dynamic-button-container"
+          class="text-center flex gap-4 justify-center flex-wrap"
+        >
+          <!-- <button class="btn">Button</button> -->
+        </div>
+      </section>
+      <!-- Card Container -->
+      <section
+        id="card-container"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+      >
+        <!-- <div>
+          <div class="mb-2 p-1">
+            <img src="images/Rectangle 1.png" alt="" />
+          </div>
+          <div class="flex gap-2">
+            <div class="rounded-full">
+              <img src="images/Ellipse 1.png" alt="" />
+            </div>
+            <div class="flex-1">
+              <h4 class="text-base font-bold text-[#171717]">
+                Building a Winning UX Strategy Using the Kano Model
+              </h4>
+              <p class="text-sm text-[#171717] font-medium">
+                <span>Awlad Hossain</span>
+              </p>
+              <p class="text-sm text-[#171717] font-medium">91K views</p>
+            </div>
+          </div>
+        </div> -->
+      </section>
+    </main>
+    <footer></footer>
     <script src="js/index.js"></script>
   </body>
 </html>
