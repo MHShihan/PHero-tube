@@ -24,18 +24,27 @@ const handleLoadCard = async (categoryID) => {
     `https://openapi.programming-hero.com/api/videos/category/${categoryID}`
   );
   const data = await res.json();
-  // console.log(categoryID);
+  console.log(categoryID);
 
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   data.data.forEach((card) => {
+    const postedTime = card?.others?.posted_date;
+    console.log(postedTime);
     const div = document.createElement("div");
     div.innerHTML = `
     <div>
-    <div class="mb-2 p-1  ">
+    <div class="mb-2 p-1 ">
       <img class = " h-[200px] w-auto rounded-xl" src="${
         card?.thumbnail
       }" alt="" />
+      <div class="relative">
+            <p
+              class="absolute left-40 bottom-2 text-white bg-[#171717] px-2 py-1 rounded-lg text-xs"
+            >
+              ${postedTime ? secondsToHoursAndMinutes(postedTime) : ""}
+            </p>
+          </div>
     </div>
     <div class="flex gap-2 mt-4">
       <img class = "rounded-full w-[40px] h-[40px] mt-4" src="${
@@ -62,6 +71,15 @@ const handleLoadCard = async (categoryID) => {
 
     cardContainer.appendChild(div);
   });
+
+  // Time Conversion
+  function secondsToHoursAndMinutes(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const remainingSeconds = seconds % 3600;
+    const minutes = Math.floor(remainingSeconds / 60);
+
+    return `${hours}hrs ${minutes}min ago`;
+  }
 
   // console.log(data.data);
   const handleDrawing = (categoryID) => {
