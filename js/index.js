@@ -1,17 +1,18 @@
+let arr = [];
 const loadCategory = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/videos/categories"
   );
   const data = await res.json();
   const categoryData = data.data;
-  console.log(categoryData);
+  // console.log(categoryData);
   const categoryButtonContainer = document.getElementById(
     "dynamic-button-container"
   );
   categoryData.forEach((category) => {
     const div = document.createElement("div");
     div.innerHTML = `
-      <button onclick ="handleLoadCard('${category.category_id}')" class="btn">${category.category}</button>
+      <button id = "dynamic-btn" onclick ="handleLoadCard('${category.category_id}')" class="btn">${category.category}</button>
       `;
 
     categoryButtonContainer.appendChild(div);
@@ -24,13 +25,31 @@ const handleLoadCard = async (categoryID) => {
     `https://openapi.programming-hero.com/api/videos/category/${categoryID}`
   );
   const data = await res.json();
-  console.log(categoryID);
+  const cardItem = data.data;
+  console.log(cardItem);
 
+  // console.log(categoryID);
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
-  data.data.forEach((card) => {
+
+  cardItem.forEach((card) => {
+    let arr = [];
+    const cardViewArray = Object.values(card?.others);
+    console.log(cardViewArray);
+    // console.log(cardView);
+    const extractNumericViews = (views) => {
+      const sliceValue = views.slice(0, -1);
+      return parseFloat(sliceValue); // Remove the last character ("k")
+    };
+    // cardViewArray.sort((a, b) => {
+    //   const viewsA = extractNumericViews(a.cardView);
+    //   const viewsB = extractNumericViews(b.cardView);
+
+    //   return viewsB - viewsA; // Compare in descending order
+    // });
+    // console.log(extractNumericViews(cardViewArray));
+
     const postedTime = card?.others?.posted_date;
-    console.log(postedTime);
     const div = document.createElement("div");
     div.innerHTML = `
     <div>
@@ -71,6 +90,8 @@ const handleLoadCard = async (categoryID) => {
 
     cardContainer.appendChild(div);
   });
+
+  // For Sorting according to the Views:
 
   // Time Conversion
   function secondsToHoursAndMinutes(seconds) {
