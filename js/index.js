@@ -1,4 +1,4 @@
-let arr = [];
+// fetching category
 const loadCategory = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/videos/categories"
@@ -36,18 +36,6 @@ const handleLoadCard = async (categoryID) => {
     let arr = [];
     const cardViewArray = Object.values(card?.others);
     console.log(cardViewArray);
-    // console.log(cardView);
-    const extractNumericViews = (views) => {
-      const sliceValue = views.slice(0, -1);
-      return parseFloat(sliceValue); // Remove the last character ("k")
-    };
-    // cardViewArray.sort((a, b) => {
-    //   const viewsA = extractNumericViews(a.cardView);
-    //   const viewsB = extractNumericViews(b.cardView);
-
-    //   return viewsB - viewsA; // Compare in descending order
-    // });
-    // console.log(extractNumericViews(cardViewArray));
 
     const postedTime = card?.others?.posted_date;
     const div = document.createElement("div");
@@ -90,8 +78,6 @@ const handleLoadCard = async (categoryID) => {
 
     cardContainer.appendChild(div);
   });
-
-  // For Sorting according to the Views:
 
   // Time Conversion
   function secondsToHoursAndMinutes(seconds) {
